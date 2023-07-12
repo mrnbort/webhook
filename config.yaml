@@ -1,0 +1,10 @@
+tasks:
+  - id: test1
+    auth: test1-key
+    command: "docker restart blah"
+  - id: test2
+    auth: test2-key
+    command: "docker restart blah"
+  - id: test3
+    auth: test3-key
+    command: "docker restart blah"
