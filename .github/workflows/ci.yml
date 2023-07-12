@@ -48,7 +48,7 @@ jobs:
       - name: build and deploy master image to ghcr.io
         if: ${{ github.ref == 'refs/heads/main' }}
         env:
-          GITHUB_PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+          GITHUB_PACKAGE_TOKEN: ${{ secrets.PKG_TOKEN }}
           USERNAME: ${{ github.actor }}
           GITHUB_SHA: ${{ github.sha}}
           GITHUB_REF: ${{ github.ref}}
