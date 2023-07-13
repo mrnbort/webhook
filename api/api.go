@@ -71,7 +71,5 @@ func (s Service) postExecuteTask(w http.ResponseWriter, r *http.Request) {
 		render.JSON(w, r, JSON{"error": err.Error()})
 		return
 	}
-
 	render.JSON(w, r, JSON{"status": "ok"})
-
 }
