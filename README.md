@@ -1,4 +1,4 @@
-# Webhook Service 
+# Webhook Service [![Run Tests and Build an Image](https://github.com/mrnbort/webhook/actions/workflows/ci.yml/badge.svg)](https://github.com/mrnbort/webhook/actions/workflows/ci.yml)
 
 ## Description
 
