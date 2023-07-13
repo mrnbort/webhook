@@ -45,8 +45,8 @@ jobs:
       - name: available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
-      - name: build and deploy master image to ghcr.io
-        if: ${{ github.ref == 'refs/heads/main' }}
+      - name: build and deploy master image site to ghcr.io and dockerhub
+        if: ${{ github.ref == 'refs/heads/master' }}
         env:
           GITHUB_PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
           USERNAME: ${{ github.actor }}
@@ -56,10 +56,8 @@ jobs:
           ref="$(echo ${GITHUB_REF} | cut -d'/' -f3)"
           echo GITHUB_REF - $ref
           echo ${GITHUB_PACKAGE_TOKEN} | docker login ghcr.io -u ${USERNAME} --password-stdin
-          docker buildx build --push \
-              --build-arg CI=github --build-arg GITHUB_SHA=${GITHUB_SHA} --build-arg GIT_BRANCH=${ref} \
-              --platform linux/amd64,linux/arm64 \
-              -t ghcr.io/${USERNAME}/webhook:${ref} .
+          docker build -f Dockerfile --no-cache -t ghcr.io/${USERNAME}/webhook:${ref} .
+          docker push ghcr.io/${USERNAME}/webhook:${ref}
 
       - name: deploy tagged (latest) to ghcr.io
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
